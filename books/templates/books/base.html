@@ -1,4 +1,5 @@
 {% load static %}
+{% load books_tags %}
 
 <!doctype html>
 <html lang="en">
@@ -9,23 +10,30 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Document</title>
 	<link href='{% static "books/css/style.css" %}' rel='stylesheet' type='text/css'>
+
+	<script type="text/javascript" src="{% static 'books/js/min.js' %}"> </script>
 </head>
 <body>
 
-<div id="top_bar_black"> <div id="logo_container"> <div id="logo_image"> <img src="{% static 'books/image/logo.gif' %}"></div>
-	<div id="nav_block" class="scrollmenu">
-	    <div class="nav_button"><a href="{% url 'books:home' %}">Домой</a></div>
-	    <div class="nav_button"><a href="{% url 'books:genre' %}">Жанры</a></div>
-	    <div class="nav_button"><a href="#">Contact </a> </div>
-		<div class="nav_button"><a href="#">About</a> </div>
-		<div class="nav_button"><a href="#">Links</a> </div>
+
+<div class="header">
+   <div class="icon-bar">
+        <a class="active" href="#"><i class="fa fa-home">Домой</i></a>
+        <a href="#"><i class="fa fa-envelope"></i>sdsd</a>
+        <a href="{% url 'books:genre_cat' pk=1 %}"><i class="fa fa-globe"></i> sd</a>
+       <a href="{% url 'books:add_books' %}"><i class="fa fa-trash"></i>Регистрация</a>
 
 
-	  </div>
-</div> </div>
+
+   </div>
+</div>
+
+
 
 {% block content %}
 {% endblock content %}
+
+
 
 
 

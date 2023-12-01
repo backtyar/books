@@ -1,5 +1,7 @@
 from django.core.validators import MaxValueValidator
 from django.db import models
+from django.urls import reverse
+
 
 class Country(models.Model):
     name = models.CharField(max_length=100, verbose_name='Государство', unique=True)
@@ -56,6 +58,7 @@ class Book(models.Model):
 class Genre(models.Model):
     genre = models.CharField(max_length=100, verbose_name='Жанр', unique=True, db_column='Жанр')
     description = models.TextField(verbose_name='Описание', db_column='Описание')
+    slug = models.SlugField(max_length=50, verbose_name='Слаг', null=True)
 
     class Meta:
         db_table = "genre"

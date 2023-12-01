@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'books/base.html' %}
 
-</body>
-</html>
+
+{% block content %}
+<form method="post" enctype="multipart/form-data" >
+    {% csrf_token %}
+    {{ form.as_div }}
+     <button type="submit" class="save btn btn-primary mt-4" style="width: 100%;">
+                Сахранить
+     </button>
+</form>
+{% endblock content %}
