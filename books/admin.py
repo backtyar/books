@@ -25,9 +25,10 @@ class AdminAuthor(admin.ModelAdmin):
 
 @admin.register(Genre)
 class AdminGenre(admin.ModelAdmin):
-    list_display = ['id', 'genre', 'description']
+    list_display = ['id', 'genre', 'description', 'slug']
     list_display_links = ['genre']
     search_fields = ['genre']
+    prepopulated_fields = {'slug': ('genre',)}
 
 
 @admin.register(Publisher)
