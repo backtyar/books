@@ -2,11 +2,118 @@
 
 
 {% block content %}
-<form method="post" enctype="multipart/form-data" >
-    {% csrf_token %}
-    {{ form.as_div }}
-     <button type="submit" class="save btn btn-primary mt-4" style="width: 100%;">
-                Сахранить
-     </button>
-</form>
+
+ <style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+.title_book {
+    text-align: center
+}
+</style>
+
+
+
+<div id="content_container">
+    <h3  class="title_book">Добавить книгу</h3>
+    <div class="container">
+       <form method="post" class="post-form" enctype="multipart/form-data" action="{% url 'books:add_books' %}">
+            {% csrf_token %}
+            {{form.as_div}}
+            <button type="submit" class="save btn btn-primary mt-4" style="width: 100%;">
+                Создать</button>
+       </form>
+    </div>
+</div>
+
+
+
+
+
+
 {% endblock content %}
+
+
+
+
+
+
+
+<!--  <div class="container">-->
+<!--   -->
+<!--    <form action="{% url 'books:add_books'%}" method="post" enctype="multipart/form-data">-->
+<!--       {% csrf_token %}-->
+
+<!--      <label for="fname">f.name_book</label>-->
+<!--      <input type="text" id="fname" name="firstname" placeholder="Называние книги..">-->
+
+<!--      <label for="country">Автор</label>-->
+<!--      <select id="country" name="country">-->
+<!--        <option value="australia">&#45;&#45;&#45;&#45;&#45;&#45;</option>-->
+
+<!--      </select>-->
+
+<!--      <label for="country">Жанр</label>-->
+<!--      <select id="country" name="country">-->
+<!--        <option value="australia">&#45;&#45;&#45;&#45;&#45;&#45;</option>-->
+
+<!--      </select>-->
+
+<!--      <label for="fname">Дата публикации</label>-->
+<!--      <input type="text" id="fname" name="firstname" placeholder="Дата публикации..">-->
+<!--      <label for="fname">Каличество страниц</label>-->
+<!--      <input type="text" id="fname" name="firstname" placeholder="Каличество страниц">-->
+
+
+
+<!--      <label for="country">Страна</label>-->
+<!--      <select id="country" name="country">-->
+<!--        <option value="australia">Australia</option>-->
+<!--        <option value="canada">Canada</option>-->
+<!--        <option value="usa">USA</option>-->
+<!--      </select>-->
+
+<!--      <label for="subject">Описание</label>-->
+<!--      <textarea id="subject" name="subject" placeholder="Краткое описание о книге.." style="height:200px"></textarea>-->
+
+<!--       <label for="fname">Фото</label>-->
+<!--      <input type="text" id="fname" name="firstname" placeholder="Фото">-->
+
+<!--       <label for="fname">файл </label>-->
+<!--      <input type="text" id="fname" name="firstname" placeholder="Файл">-->
+<!--      -->
+
+
+<!--      <input type="submit" value="Submit">-->
+
+<!--    </form>-->
+<!--  -->
+<!--  </div>-->

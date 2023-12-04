@@ -1,0 +1,10 @@
+{% extends 'books/base.html' %}
+
+
+{% block content %}
+ <form method="post" class="post-form" enctype="multipart/form-data" action="{% url 'books:login' %}">
+            {% csrf_token %}
+            {{form.as_div}}
+            <button type="submit" class="save btn btn-primary mt-4" style="width: 100%;">Зайти</button>
+</form>
+{% endblock content %}
