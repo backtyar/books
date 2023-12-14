@@ -1,0 +1,36 @@
+{% extends 'books/base.html' %}
+
+
+{% block content %}
+
+<div  id="content_container">
+             <!-- three section -->
+
+                     <div class="row">
+                       {% for book in books %}
+                         <a href="#">
+                         <div class="col-md-6 padding_bottom2">
+                           <div class="our_img">
+                              <figure><img src="{{ book.image.url }}" height="320" width="150"/></figure>
+                           </div>
+                           <div class="our_text_box three_box">
+
+                              <div class="post_box d_flex padding_top3">
+                                <p><h3 class="awesome padding_flot">Нозывание: {{book.name_book}}</h3></p>
+
+                                <p>  Автор: {{book.author}} </p>
+                              </div>
+                              <p> {{book.description|truncatewords:20}}</p>
+
+                           </div>
+                        </div>
+                             </a>
+
+                       {% endfor%}
+
+                     </div>
+
+</div>
+
+
+{% endblock content %}

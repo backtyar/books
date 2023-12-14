@@ -1,4 +1,3 @@
-from django.core.validators import MaxValueValidator
 from django.db import models
 from django.urls import reverse
 
@@ -44,6 +43,7 @@ class Book(models.Model):
     text_book = models.FileField(verbose_name='файл', blank=True, upload_to='file/')
 
 
+
     def __str__(self):
         return self.name_book
 
@@ -55,10 +55,13 @@ class Book(models.Model):
 
 
 
+
+
 class Genre(models.Model):
     genre = models.CharField(max_length=100, verbose_name='Жанр', unique=True, db_column='Жанр')
     description = models.TextField(verbose_name='Описание', db_column='Описание')
-    slug = models.SlugField(max_length=50, verbose_name='Слаг', null=True)
+    image = models.ImageField(verbose_name='Фото', upload_to='genre', null=True)
+    slug = models.SlugField(max_length=50, verbose_name='Слаг', unique=True, db_index=True)
 
     class Meta:
         db_table = "genre"
@@ -70,103 +73,3 @@ class Genre(models.Model):
         return self.genre
 
 
-
-
-class Publisher(models.Model):
-    name_publisher = models.CharField(max_length=100, verbose_name='Название издательства')
-    address = models.TextField(verbose_name='Адрес',)
-    phone = models.CharField(max_length=100, verbose_name='Телефон', unique=True)
-
-    class Meta:
-        db_table = "publisher"
-        verbose_name = 'издательства'
-        verbose_name_plural = 'издательства'
-
-    def __str__(self):
-        return self.name_publisher
-
-
-
-
-class Reader(models.Model):
-    name_user = models.CharField( verbose_name='имя читатель', max_length=100)
-    email = models.EmailField( verbose_name='электронная почта', max_length=100, blank=True)
-    age = models.PositiveSmallIntegerField(verbose_name='возрост ', validators=[MaxValueValidator(150)], blank=True)
-
-
-    class Meta:
-        db_table = "reader"
-        verbose_name = 'читатель'
-        verbose_name_plural = 'читатели'
-
-    def __str__(self):
-        return self.name_user
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# quality = (
-#     ('not', 'не известно'),
-#     ('HDRip', 'HDRip'),
-#     ('HDTVRip', 'HDTVRip'),
-#     ('WEB - DLRip', 'WEB - DLRip'),
-#     ('HD DVDRip', 'HD DVDRip'),
-#     ('BDRip', 'BDRip'),
-# )
-#
-#
-# class Country(models.Model):
-#     name = models.CharField(verbose_name='название', max_length=100)
-#
-#     class Meta:
-#         verbose_name =  'Страна'
-#         verbose_name_plural = 'Страна'
-#
-#     def __str__(self):
-#         return self.name
-#
-#
-#
-#
-# class Films(models.Model):
-#     name = models.CharField(verbose_name='название', max_length=100)
-#     age = models.DateField(verbose_name='дата выхода', max_length=100)
-#     description = models.TextField(verbose_name='описание', blank=True)
-#     image = models.ImageField(verbose_name=' фото', upload_to='d')
-#     quality = models.CharField(verbose_name='качесто',max_length=100, choices=quality, default='not' )
-#     country = models.ForeignKey(Country, on_delete=models.SET_NULL,verbose_name='страна', related_name='films_country', null=True)
-#     gener = models.ForeignKey('Genre', on_delete=models.SET_NULL, verbose_name='жанр', related_name='films_gener',  null=True)
-#
-#     class Meta:
-#         verbose_name = 'Фильм'
-#         verbose_name_plural = 'Филмы'
-#
-#     def __str__(self):
-#         return self.name
-#
-#
-# class Genre(models.Model):
-#     name = models.CharField(verbose_name='название', max_length=100)
-#     description = models.TextField(verbose_name='описание', blank=True)
-#
-#     class Meta:
-#         verbose_name = 'Жанр'
-#         verbose_name_plural = 'Жанры'
-#
-#
-#     def __str__(self):
-#         return self.name

@@ -2,9 +2,52 @@
 
 
 {% block content %}
- <form method="post" class="post-form" enctype="multipart/form-data" action="{% url 'books:login' %}">
-            {% csrf_token %}
-            {{form.as_div}}
-            <button type="submit" class="save btn btn-primary mt-4" style="width: 100%;">Зайти</button>
-</form>
+
+<div id="content_container">
+  <div class="row">
+
+    <div class="col-md-offset-3 col-md-6">
+      <form class="form-horizontal"  method="post" action="{% url 'books:login' %}">
+
+          {% csrf_token %}
+          <span class="heading">АВТОРИЗАЦИЯ</span>
+
+        {% for f in form %}
+          <p>
+              <label for="{{f.id_for_label}}">{{f.label}}  </label> {{f}}
+          </p>
+        {% endfor %}
+
+
+          <div class="form-group">
+            <button type="submit" class="delete btn btn-danger mt-4" style="width: 100%;">ВХОД</button>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+  <!-- /.row -->
+</div>
+<!-- /.container -->
+
 {% endblock content %}
+
+
+<!--            <div class="login-error">-->
+<!--            <span class="heading">АВТОРИЗАЦИЯ</span>-->
+<!--         {% for i in form %}-->
+<!--            <div class="form-group">-->
+<!--              <input type="text" class="form-control" id="inputEmail" placeholder="Имя пользователя">-->
+<!--              <i class="fa fa-user"></i>-->
+<!--            </div>-->
+<!--            <div class="form-group help">-->
+<!--              <input type="password" class="form-control" id="inputPassword" placeholder="Пароль">-->
+<!--              <i class="fa fa-lock"></i>-->
+<!--              <a href="#" class="fa fa-question-circle"></a>-->
+<!--            </div>-->
+<!--        {% endfor %}-->
+<!--        <div class="form-group">-->
+<!--            <button type="submit" class="delete btn btn-danger mt-4" style="width: 100%;">ВХОД</button>-->
+
+<!--

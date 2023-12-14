@@ -1,0 +1,41 @@
+{% extends 'books/base.html' %}
+
+
+{% block content %}
+<div id="content_container">
+
+
+<!-- fist section -->
+	{% for genre in genres %}
+		    <div class="row">
+		       <div class="col-md-12">
+		          <div class="our_two_box">
+		             <div class="row d_flex">
+
+		                   <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+		                   <div class="our_img">
+		                      <figure class="content-img"><img  src="{{genre.image.url }}" width="150" height="300"/></figure>
+		                   </div>
+		                </div>
+		                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+		                   <div class="our_text_box">
+		                      <h3 class="awesome pa_wi">{{genre.genre}}</h3>
+								  <p>{{genre.description|truncatewords:20}}</p>
+		                      <div class="post_box padding_bottom1">
+
+		                         <ul class="like">
+		                             <li><a href="{% url 'books:genre_detail' genre.slug %}">Перейти</a></li>
+		                         </ul>
+		                      </div>
+		                   </div>
+		                </div>
+		             </div>
+		          </div>
+		       </div>
+		    </div>
+	{% endfor  %}
+    <!-- end fist section -->
+</div>
+
+
+{% endblock content %}

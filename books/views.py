@@ -1,20 +1,15 @@
 from django.contrib.auth.views import LoginView
-from django.contrib.auth.forms import AuthenticationForm
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView
 
 
 from .models import Book, Genre
-from .forms import AddBooksForm, RegisterUserForm
-
-
+from .forms import AddBooksForm, RegisterUserForm, LoginUserForm
 
 class MainListView(ListView):
     model = Book
     template_name = 'books/index.html'
     context_object_name = 'books'
-
-
 
 
 class GenreListView(ListView):
@@ -23,19 +18,17 @@ class GenreListView(ListView):
     context_object_name = 'genres'
 
 
-
-class GenerDetailView(DetailView):
+class GenreDetailView(DetailView):
     model = Genre
-    template_name = 'books/detail.html'
-    context_object_name = 'gener'
-    pk_url_kwarg = 'pk'
+    template_name = 'books/genre_detail.html'
+    context_object_name = 'genre'
+
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['GG'] = Book.objects.all()
+        context['books'] = Book.objects.filter(genre=self.object.pk)
         return context
-
-
 
 
 class AddBooksView(CreateView):
@@ -44,16 +37,18 @@ class AddBooksView(CreateView):
     success_url = reverse_lazy('books:home')
 
 
-
 class RegisterUserView(CreateView):
     form_class = RegisterUserForm
     template_name = 'books/register.html'
     success_url = reverse_lazy('books:home')
 
 
+
 class LoginUserView(LoginView):
-    form_class = AuthenticationForm
+    form_class = LoginUserForm
     template_name = 'books/login.html'
-    success_url = reverse_lazy('books:add_books')
+
+    def get_success_url(self):
+        return reverse_lazy('books:add_books')
 
 
